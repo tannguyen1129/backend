@@ -1,0 +1,29 @@
+# Bỏ qua tệp môi trường
+.env
+
+# Bỏ qua tệp cấu hình Nginx
+nginx.conf
+
+# Bỏ qua tệp Docker Compose chính
+docker-compose.yml
+
+# Bỏ qua tệp cơ sở dữ liệu SQLite
+*.sqlite3
+
+# Bỏ qua log và tệp tạm thời
+*.log
+*.tmp
+
+# Thư mục log và cache
+logs/
+__pycache__/
+*.pyc
+
+# Thư mục liên quan đến Python virtual environment
+venv/
+.env/
+
+
+# Bỏ qua file backup
+*.bak
+*.swp

@@ -1,0 +1,26 @@
+server {
+    listen 80; # Lắng nghe trên cổng HTTP 80
+    server_name localhost; # Tên máy chủ là localhost
+
+    # Proxy các yêu cầu đến Django backend
+    location / {
+        proxy_pass http://web:8000; # Proxy đến dịch vụ Django đang chạy trên container
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Cấu hình thư mục static của Django
+    location /static/ {
+        alias /app/staticfiles/; # Chia sẻ thư mục staticfiles từ container Django
+    }
+
+    # Cấu hình thư mục media của Django
+    location /media/ {
+        alias /app/media/; # Chia sẻ thư mục media từ container Django
+    }
+
+    # Log lỗi và truy cập
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+}

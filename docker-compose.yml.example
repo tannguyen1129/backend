@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+    container_name: backend_django
+    restart: always
+    ports:
+      - "8000:8000" # Django lắng nghe trên cổng 8000
+    volumes:
+      - .:/app
+    command: python manage.py runserver 0.0.0.0:8000 # Lắng nghe trên tất cả địa chỉ IP
+    networks:
+      - backend_network
+
+  nginx:
+    image: nginx:1.18
+    container_name: backend_nginx
+    restart: always
+    ports:
+      - "80:80" # Nginx lắng nghe trên cổng HTTP 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf # Sử dụng cấu hình Nginx trong dự án
+      - ./logs/nginx:/var/log/nginx # Thư mục lưu log Nginx
+      - ./staticfiles:/app/staticfiles # Chia sẻ thư mục staticfiles từ container web
+      - ./media:/app/media # Chia sẻ thư mục media từ container web
+    depends_on:
+      - web # Đảm bảo Nginx khởi động sau Django
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge

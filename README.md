@@ -22,9 +22,24 @@ Phần mềm được đội ngũ tác giả của UMT.NewMountain open source t
 
 ### 1. Giới thiệu
 
+Đây là backend của hệ thống cứu hộ khẩn cấp được xây dựng bằng Appsmith và Django. Với chủ đề năm nay là ứng dụng LCDP, nhóm tác giả đã sử dụng Django - một web framework mã nguồn mở để dựng APIs cho Rescue System
+
 ### 2. Cấu trúc thư mục dự án
 
 ### 3. Hướng dẫn cài đặt
+
+#### 3.1. Yêu cầu
+
+Để có thể sử dụng tốt bạn cần chuẩn bị một máy ảo VPS và một domain (nếu bạn thích có domain). Nếu không có domain thì dùng địa chỉ IP máy chủ để thay thế.
+
+Cấu hình máy chủ VPS tối thiểu, phù hợp cho thử nghiệm:
+
+CPU: 1 Core
+RAM: 1GB
+Dung lượng đĩa: 20GB SSD
+Hệ điều hành: Ubuntu 20.04 LTS hoặc Debian 11
+Băng thông: 1TB/tháng
+
 
 ### 4. License
 

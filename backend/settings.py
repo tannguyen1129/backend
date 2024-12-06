@@ -26,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
+SECRET_KEY ='django-insecure-((+==sel4fn_cr2fb48b)txhwl*n(o$0n9_+=gfp#^ae#*70we'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = False
 
 # ALLOWED_HOSTS
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
@@ -53,10 +53,12 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'userauths',
     'image',
+    
     'notifications',
     'resources',
     'requests',
     'maps',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -200,9 +202,9 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(os.getenv('JWT_ACCESS_TOKEN_LIFETIME', 60))),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=int(os.getenv('JWT_REFRESH_TOKEN_LIFETIME', 7))),
-    'ROTATE_REFRESH_TOKENS': os.getenv('JWT_ROTATE_REFRESH_TOKENS', 'True') == 'True',
-    'BLACKLIST_AFTER_ROTATION': os.getenv('JWT_BLACKLIST_AFTER_ROTATION', 'True') == 'True',
-    'AUTH_HEADER_TYPES': (os.getenv('JWT_AUTH_HEADER_TYPES', 'Bearer'),),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Thời gian sống của access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Thời gian sống của refresh token
+    'ROTATE_REFRESH_TOKENS': True,                  # Xoay refresh token mỗi lần refresh
+    'BLACKLIST_AFTER_ROTATION': True,               # Blacklist refresh token cũ sau khi refresh
+    'AUTH_HEADER_TYPES': ('Bearer',),               # Kiểu header để xác thực
 }

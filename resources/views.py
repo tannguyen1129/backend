@@ -1,12 +1,15 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, status
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from .models import Resource, Personnel, DispatchRequest, Assignment
 from .serializers import ResourceSerializer, PersonnelSerializer, DispatchRequestSerializer, AssignmentSerializer
 from .permissions import IsAgencyPermission, IsAuthorityPermission
 from rest_framework.permissions import IsAuthenticated
 
-class AgencyViewSet(viewsets.ViewSet):
+class AgencyViewSet(ModelViewSet):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
     permission_classes = [IsAuthenticated, IsAgencyPermission]
 
     def list(self, request):
@@ -76,6 +79,21 @@ class AgencyViewSet(viewsets.ViewSet):
             serializer.save()
             return Response({'message': 'Phân công đã được tạo.'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['patch'])
+    def update_status(self, request, pk=None):
+        """
+        Cập nhật trạng thái của Assignment.
+        """
+        try:
+            # Sử dụng `self.get_object()` để lấy đối tượng dựa trên `pk`
+            assignment = self.get_object()
+            assignment.status = 'Hoàn thành'  # Cập nhật trạng thái
+            assignment.save()
+            return Response({'message': 'Trạng thái đã được cập nhật thành Hoàn thành.'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
     
 class AuthorityViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated, IsAuthorityPermission]

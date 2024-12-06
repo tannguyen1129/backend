@@ -1,8 +1,11 @@
 from django.db import models
-from userauths.models import User
+from django.utils.timezone import now
 
-class Notification(models.Model):
-    agency = models.CharField(max_length=255, default='', blank=True, null=True)
-    title = models.CharField(max_length=255)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+class EmergencyNotification(models.Model):
+    title = models.CharField(max_length=255)  # Tiêu đề thông báo
+    content = models.TextField()  # Nội dung thông báo
+    timestamp = models.DateTimeField(default=now)  # Thời gian tạo thông báo
+
+    def __str__(self):
+        return self.title
+

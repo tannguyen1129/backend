@@ -40,6 +40,16 @@ Dung lượng đĩa: 20GB SSD
 Hệ điều hành: Ubuntu 20.04 LTS hoặc Debian 11
 Băng thông: 1TB/tháng
 
+Trước khi bắt đầu, hãy cài đặt đầy đủ [Docker](https://docs.docker.com/get-started/get-docker/) (version 20.10.7 or later) và [Docker-compose](https://docs.docker.com/compose/install/) (version 1.29.2 or later)
+
+#### 3.2. Hướng dẫn cài đặt
+
+Đầu tiên hãy tạo thư mục trong máy ảo bằng lệnh `mkdir rescue` sau đó truy cập thư mục bằng lệnh `cd rescue` 
+
+Sao chép kho lưu trữ sau:
+```
+ git clone --recursive
+```
 
 ### 4. License
 

@@ -68,7 +68,7 @@ Sau khi cấu hình xong, thì bắt đầu chạy lệnh Docker:
 
 ```
 docker-compose build
-docker-compose build -d
+docker-compose up -d
 ```
 Đến đây là hoàn thành, có thể truy cập từ địa chỉ của máy chủ
 

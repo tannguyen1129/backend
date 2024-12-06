@@ -44,12 +44,26 @@ Trước khi bắt đầu, hãy cài đặt đầy đủ [Docker](https://docs.d
 
 #### 3.2. Hướng dẫn cài đặt
 
-Đầu tiên hãy tạo thư mục trong máy ảo bằng lệnh `mkdir rescue` sau đó truy cập thư mục bằng lệnh `cd rescue` 
+Cài đặt Python và các công cụ liên quan:
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3 python3-pip python3-venv -y
+```
+Gán python3 thành python:
+```
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+sudo update-alternatives --config python
+```
 
-Sao chép kho lưu trữ sau:
+Đầu tiên hãy tạo thư mục trong máy ảo bằng lệnh `mkdir rescue` sau đó truy cập thư mục bằng lệnh `cd rescue`. Trong thư mục `rescue` hãy tạo một môi trường bằng câu lệnh `python -m venv my_env` (`my_env` có thể thay đổi bằng tên khác. Cuối cùng kích hoạt môi trường `source my_env/bin/activate`
+
+Tiếp theo sao chép kho lưu trữ sau:
 ```
- git clone --recursive
+ git clone --recursive https://github.com/tannguyen1129/backend.git
+cd backend
 ```
+
+
 
 ### 4. License
 

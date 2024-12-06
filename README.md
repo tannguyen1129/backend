@@ -59,11 +59,23 @@ sudo update-alternatives --config python
 
 Tiếp theo sao chép kho lưu trữ sau:
 ```
- git clone --recursive https://github.com/tannguyen1129/backend.git
+git clone --recursive https://github.com/tannguyen1129/backend.git
 cd backend
 ```
+Định cấu hình các file sau trong backend và bỏ đuôi `.example`: `nginx.conf.example`,`docker-compose.yml.example` và `.env.example`
 
+Sau khi cấu hình xong, thì bắt đầu chạy lệnh Docker:
 
+```
+docker-compose build
+docker-compose build -d
+```
+Đến đây là hoàn thành, có thể truy cập từ địa chỉ của máy chủ
+
+Cách sử dụng
+
+1. Nếu bạn muốn bắt đầu, hãy dùng câu lệnh: `docker-compose up -d`
+2. Nếu bạn muốn dừng, hãy dùng câu lệnh: `docker-compose down`
 
 ### 4. License
 

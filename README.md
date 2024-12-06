@@ -14,27 +14,18 @@ Phần mềm được đội ngũ tác giả của UMT.NewMountain open source t
 ## Mục lục tài liệu
 
 1. [Giới Thiệu](#1-Giới-thiệu)
-2. [Tổng quan hệ thống](#2-Tổng-quan-hệ-thống)
-3. [Chức năng](#3-Chức-năng)
-4. [Cấu trúc thư mục dự án](#4-Cấu-trúc-thư-mục-dự-án)
-5. [Hướng dẫn cài đặt](#hướng-dẫn-cài-đặt)
+2. [Cấu trúc thư mục dự án](#4-Cấu-trúc-thư-mục-dự-án)
+3. [Hướng dẫn cài đặt](#hướng-dẫn-cài-đặt)
     - [📋 Yêu Cầu - Prerequisites](#yêu-cầu-📋)
     - [🔨 Cài Đặt](#🔨-cài-đặt)
-6. [Đóng góp](#6-Đóng-góp)
-7. [License (Giấy phép)](#7-License-(-Giấy-phép-))
+4. [License (Giấy phép)](#7-License-(-Giấy-phép-))
 
 ### 1. Giới thiệu
 
-### 2. Tổng quan hệ thống
+### 2. Cấu trúc thư mục dự án
 
-### 3. Chức năng
+### 3. Hướng dẫn cài đặt
 
-### 4. Cấu trúc thư mục dự án
-
-### 5. Hướng dẫn cài đặt
-
-### 6. Đóng góp
-
-### 7. License
+### 4. License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

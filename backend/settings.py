@@ -51,14 +51,14 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+
     'userauths',
     'image',
-    
     'notifications',
     'resources',
-    'requests',
     'maps',
-    'chat',
+    'news',
+    'support',
 ]
 
 MIDDLEWARE = [
@@ -200,6 +200,7 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Thời gian sống của access token

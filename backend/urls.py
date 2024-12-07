@@ -26,9 +26,9 @@ urlpatterns = [
     path('api/image/', include('image.urls')),
     path('api/notification/', include('notifications.urls')),
     path('api/coordination/', include('resources.urls')),
-    path('api/requests/', include('requests.urls')),
+    path('api/requests/', include('support.urls')),
     path('api/zone/', include('maps.urls')),
-    path('api/chat/', include('chat.urls')),
+    path('api/news/', include('news.urls')),
 
 ]
 

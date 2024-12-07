@@ -70,9 +70,15 @@ Sau khi cấu hình xong, thì bắt đầu chạy lệnh Docker:
 docker-compose build
 docker-compose up -d
 ```
-Đến đây là hoàn thành, có thể truy cập từ địa chỉ của máy chủ
+Bước tiếp theo, bạn dùng lệnh để tạo superuser:
 
-Cách sử dụng
+```
+python manage.py createsuperuser
+```
+
+Đến đây là hoàn thành, có thể truy cập từ địa chỉ của máy chủ, truy cập bảng điều khiển của admin bằng địa chủ máy chủ. Ví dụ `10.11.12.13/admin`
+
+Cách sử dụng:
 
 1. Nếu bạn muốn bắt đầu, hãy dùng câu lệnh: `docker-compose up -d`
 2. Nếu bạn muốn dừng, hãy dùng câu lệnh: `docker-compose down`

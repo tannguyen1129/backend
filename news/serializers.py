@@ -6,3 +6,4 @@ class DisasterNewsSerializer(serializers.ModelSerializer):
         model = DisasterNews
         # Các trường bạn muốn trả về qua API
         fields = ['id', 'title', 'description', 'url', 'image_url', 'published_at']
+

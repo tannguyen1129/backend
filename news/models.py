@@ -6,3 +6,5 @@ class DisasterNews(models.Model):
     url = models.URLField()
     image_url = models.URLField(blank=True, null=True)
     published_at = models.DateTimeField()
+
+

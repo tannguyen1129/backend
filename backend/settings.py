@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'maps',
     'news',
     'support',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [

@@ -12,7 +12,7 @@ class Resource(models.Model):
         return f"{self.name} ({self.quantity} {self.unit})"
 
 class Personnel(models.Model):
-    name = models.CharField(max_length=100)  # Tên nhân lực
+    personnel_name = models.CharField(max_length=100)  # Tên nhân lực
     role = models.CharField(max_length=100)  # Vai trò
     quantity = models.PositiveIntegerField(default="1") 
     availability_status = models.BooleanField(default=True)  # Có sẵn

@@ -12,10 +12,10 @@ class ResourceAdmin(admin.ModelAdmin):
 
 @admin.register(Personnel)
 class PersonnelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'role', 'quantity', 'availability_status', 'location', 'contact')
-    search_fields = ('name', 'role', 'location')
+    list_display = ('personnel_name', 'role', 'quantity', 'availability_status', 'location', 'contact')
+    search_fields = ('personnel_name', 'role', 'location')
     list_filter = ('availability_status', 'role')
-    ordering = ('name',)
+    ordering = ('personnel_name',)
 
 
 @admin.register(DispatchRequest)

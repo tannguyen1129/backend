@@ -64,7 +64,12 @@ cd backend
 ```
 Kế tiếp các bạn tạo môi trường bằng lệnh `python -m venv my_env` (`my_env` là tên môi trường, bạn có thể thay đổi)
 
-Sau bước này, chạy lệnh `pip install -r requirements.txt` để cài đặt các thư viện, sau đó chạy lệnh `python manage.py migrate`.
+Sau bước này, chạy lệnh để cài đặt các thư viện, sau đó chạy lệnh migrate dữ liệu:
+
+```
+pip install -r requirements.txt
+python manage.py migrate
+```
 
 Tiếp theo, định cấu hình các file sau trong backend và bỏ đuôi `.example`: `nginx.conf.example`,`docker-compose.yml.example` và `.env.example`
 

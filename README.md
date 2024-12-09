@@ -64,6 +64,12 @@ cd backend
 ```
 Định cấu hình các file sau trong backend và bỏ đuôi `.example`: `nginx.conf.example`,`docker-compose.yml.example` và `.env.example`
 
+```
+cp nginx.conf.example nginx.conf
+cp docker-compose.yml.example docker-compose.yml
+cp .env.example .env
+```
+
 Sau khi cấu hình xong, thì bắt đầu chạy lệnh Docker:
 
 ```

@@ -18,9 +18,9 @@ Phần mềm được đội ngũ tác giả của UMT.NewMountain open source t
 3. [Hướng dẫn cài đặt](#hướng-dẫn-cài-đặt)
     - [📋 Yêu Cầu - Prerequisites](#yêu-cầu-📋)
     - [🔨 Cài Đặt](#🔨-cài-đặt)
-4. [License (Giấy phép)](#7-License-(-Giấy-phép-))
-5. [Đóng góp](5-đóng-góp)
-6. [Liên hệ](6-liên-hệ)
+4. [License (Giấy phép)](#4-license)
+5. [Đóng góp](#5-đóng-góp)
+6. [Liên hệ](#6-liên-hệ)
 
 ### 1. Giới thiệu
 

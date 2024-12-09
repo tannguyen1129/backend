@@ -55,7 +55,12 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 sudo update-alternatives --config python
 ```
 
-Đầu tiên hãy tạo thư mục trong máy ảo bằng lệnh `mkdir rescue` sau đó truy cập thư mục bằng lệnh `cd rescue`. Trong thư mục `rescue` hãy tạo một môi trường bằng câu lệnh `python -m venv my_env` (`my_env` có thể thay đổi bằng tên khác. Cuối cùng kích hoạt môi trường `source my_env/bin/activate`
+Đầu tiên hãy tạo thư mục trong máy ảo bằng lệnh `mkdir rescue` sau đó truy cập thư mục bằng lệnh `cd rescue`. Trong thư mục `rescue` hãy tạo một môi trường và kích hoạt môi trường bằng câu lệnh sau: 
+
+```
+python -m venv my_env (`my_env` có thể thay đổi bằng tên khác).
+source my_env/bin/activate
+```
 
 Tiếp theo sao chép kho lưu trữ sau:
 ```

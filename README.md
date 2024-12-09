@@ -47,7 +47,7 @@ Trước khi bắt đầu, hãy cài đặt đầy đủ [Docker](https://docs.d
 Cài đặt Python và các công cụ liên quan:
 ```
 sudo apt update && sudo apt upgrade -y
-sudo apt install python3 python3-pip python3-venv -y
+sudo apt install build-essential python3 python3-pip python3-venv -y
 ```
 Gán python3 thành python:
 ```
@@ -62,7 +62,11 @@ Tiếp theo sao chép kho lưu trữ sau:
 git clone --recursive https://github.com/tannguyen1129/backend.git
 cd backend
 ```
-Định cấu hình các file sau trong backend và bỏ đuôi `.example`: `nginx.conf.example`,`docker-compose.yml.example` và `.env.example`
+Kế tiếp các bạn tạo môi trường bằng lệnh `python -m venv my_env` (`my_env` là tên môi trường, bạn có thể thay đổi)
+
+Sau bước này, chạy lệnh `pip install -r requirements.txt` để cài đặt các thư viện, sau đó chạy lệnh `python manage.py migrate`.
+
+Tiếp theo, định cấu hình các file sau trong backend và bỏ đuôi `.example`: `nginx.conf.example`,`docker-compose.yml.example` và `.env.example`
 
 ```
 cp nginx.conf.example nginx.conf

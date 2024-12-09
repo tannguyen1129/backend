@@ -13,3 +13,4 @@ sqlparse==0.5.2
 typing-extensions==4.12.2
 transformers
 textblob
+python-dotenv

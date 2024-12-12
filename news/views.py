@@ -1,64 +1,71 @@
-import http.client
-import json
-import urllib.request
-import urllib.parse
-from rest_framework import viewsets
-from rest_framework.filters import SearchFilter, OrderingFilter
-from .models import DisasterNews
-from .serializers import DisasterNewsSerializer
+import requests
+from bs4 import BeautifulSoup
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Article
+from .serializers import ArticleSerializer
+from rest_framework.decorators import api_view
 
 
-class DisasterNewsViewSet(viewsets.ReadOnlyModelViewSet):
+class ScrapeAndListArticlesAPI(APIView):
     """
-    API ViewSet để lấy danh sách tin tức bão lũ từ cơ sở dữ liệu.
+    View để cào dữ liệu và trả về danh sách bài viết dưới dạng JSON.
     """
-    queryset = DisasterNews.objects.all().order_by('-published_at')
-    serializer_class = DisasterNewsSerializer
-    filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['title', 'description']  # Hỗ trợ tìm kiếm theo tiêu đề và nội dung
 
-def fetch_disaster_news():
-    """
-    Hàm cập nhật tin tức thiên tai, thảm họa, dịch bệnh, và bão lũ liên quan đến Việt Nam.
-    """
-    base_url = "https://newsapi.org/v2/everything"
-    params = {
-        "q": "bão OR lũ lụt OR động đất OR sạt lở OR cháy rừng OR lốc xoáy OR ngập lụt OR covid OR dịch bệnh OR đại dịch OR bệnh truyền nhiễm OR bệnh cúm OR virus OR thảm họa OR thiên tai",
-        "language": "vi",  # Chỉ lấy tin tiếng Việt
-        "apiKey": "033b04a5cd6942218322118be24c6233"
-    }
-    
-    # Mã hóa URL
-    encoded_url = f"{base_url}?{urllib.parse.urlencode(params)}"
-    print(f"Encoded URL: {encoded_url}")  # In ra URL để kiểm tra
+    BASE_URL = "https://nchmf.gov.vn/Kttv/vi-VN/1/index.html"
 
-    try:
-        with urllib.request.urlopen(encoded_url) as response:
-            if response.status == 200:
-                data = json.loads(response.read().decode())
-                
-                # Lọc các tin tức liên quan
-                relevant_keywords = ["bão", "lũ lụt", "động đất", "sạt lở", "cháy rừng", "lốc xoáy", "ngập lụt",
-                                     "covid", "dịch bệnh", "đại dịch", "bệnh truyền nhiễm", "bệnh cúm", "virus",
-                                     "thảm họa", "thiên tai"]
+    def scrape_articles(self):
+        """
+        Hàm cào dữ liệu từ trang web và lưu vào cơ sở dữ liệu.
+        """
+        response = requests.get(self.BASE_URL)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            articles = soup.select('.grp-list-item .uk-list li a')  # Chọn các thẻ <a> chứa bài viết
+            saved_count = 0
 
-                for article in data.get('articles', []):
-                    title = article.get('title', '').lower()
-                    description = article.get('description', '').lower()
+            for article in articles:
+                # Lấy tiêu đề từ nội dung của thẻ <a>
+                title = article.text.strip().split('(')[0].strip()  # Lấy phần trước dấu "(" để lấy tiêu đề
+                link = article['href'].strip() if 'href' in article.attrs else None
 
-                    # Lọc theo từ khóa
-                    if any(keyword in title or keyword in description for keyword in relevant_keywords):
-                        DisasterNews.objects.update_or_create(
-                            title=article['title'],
-                            defaults={
-                                'description': description,
-                                'url': article['url'],
-                                'image_url': article.get('urlToImage'),
-                                'published_at': article['publishedAt'],
-                            }
-                        )
-                print("Successfully fetched and updated relevant news.")
-            else:
-                print(f"Error: Unable to fetch news. Status code {response.status}")
-    except Exception as e:
-        print(f"Error occurred: {e}")
+                # Lấy thời gian từ nội dung trong ngoặc đơn
+                time_posted = article.text.strip().split('(')[1][:-1].strip() if '(' in article.text else None
+
+                # Lưu vào database nếu chưa tồn tại
+                if not Article.objects.filter(link=link).exists():
+                    Article.objects.create(
+                        title=title,
+                        link=link,
+                        time_posted=time_posted
+                    )
+                    saved_count += 1
+
+            return saved_count
+        else:
+            raise Exception(f"Failed to retrieve the page. Status code: {response.status_code}")
+
+            
+    def get(self, request):
+        """
+        Xử lý yêu cầu GET:
+        1. Cào dữ liệu từ trang web và lưu vào CSDL.
+        2. Trả về danh sách bài viết dưới dạng JSON.
+        """
+        try:
+            # Gọi hàm cào dữ liệu
+            saved_count = self.scrape_articles()
+
+            # Lấy tất cả bài viết từ CSDL
+            articles = Article.objects.all()
+            serializer = ArticleSerializer(articles, many=True)
+
+            # Trả về danh sách bài viết cùng số lượng bài viết đã lưu
+            return Response({
+                "status": "success",
+                "saved_count": saved_count,
+                "articles": serializer.data
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"status": "error", "message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

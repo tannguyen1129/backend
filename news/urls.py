@@ -1,11 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import DisasterNewsViewSet
-
-router = DefaultRouter()
-router.register(r'news', DisasterNewsViewSet, basename='news')
+from django.urls import path
+from . import views 
 
 urlpatterns = [
-    # Các URL khác
-    path('weather/', include(router.urls)),  # Định nghĩa endpoint API
+    # URL cho view cào dữ liệu và trả về bài viết
+    path('fetch-news/', views.ScrapeAndListArticlesAPI.as_view(), name='scrape_and_list_articles')
 ]

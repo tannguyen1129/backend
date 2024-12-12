@@ -145,4 +145,11 @@ Dự án này được cấp phép theo Giấy phép MIT - xem tệp [LICENSE](L
 
 ### 5. Đóng góp
 
+
+
 ### 6. Liên hệ
+
+**Sơn Tân**: 
+- Email cá nhân: tandtnt15@gmail.com
+- Email sinh viên: tan.2201700053@st.umt.edu.vn
+
